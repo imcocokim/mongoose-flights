@@ -1,0 +1,27 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %> 
+
+<form action="/flights/<%= flight._id %>?_method=PUT"
+  method="POST" autocomplete="off">
+  <label for="airline-select">Airline:</label>
+    <select name="airline" id="airline-select">
+      <option value="American">American</option>
+      <option value="Southwest">Southwest</option>
+      <option value="United">United</option>
+    </select>
+    <label for="airport-select">Airport:</label>
+    <select name="airport" id="airport-select">
+      <option value="AUS">AUS</option>
+      <option value="DFW">DFW</option>
+      <option value="DEN" selected>DEN</option>
+      <option value="LAX">LAX</option>
+      <option value="SAN">SAN</option>
+    </select>
+    <label for="flightNo-input">Flight Number:</label>
+    <input type="number" name="flightNo" id="flightNo-input">
+    <label for="departs-input">Departs:</label>
+    <input type="datetime-local" name="departs" id="departs-input">
+    <button type="submit">Update Flight</button>
+</form>
+<a href="/flights/<%= flight._id %>">Cancel</a>
+<%- include('../partials/footer') %> 
