@@ -4,6 +4,11 @@ function newFlight(req, res) {
   })
 }
 
+function create(req, res) {
+  
+}
+
 export {
-  newFlight as new
+  newFlight as new,
+  create
 }
