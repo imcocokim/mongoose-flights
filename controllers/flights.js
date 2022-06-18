@@ -1,12 +1,12 @@
 import { Flight } from '../models/flight.js'
 
 function newFlight(req, res) {
-  // const newFlight = new Flight()
-  // const dt = newFlight.departs
-  // const departsDate = dt.toISOString().slice(0, 16)
-  // res.render('flights/new', {departsDate})
+  const newPlane = new Flight()
+  const dt = newPlane.departs
+  const departsDate = dt.toISOString().slice(0, 16)
   res.render('flights/new', {
     title: 'Add Flight',
+    departsDate
 
   })
 }
@@ -31,7 +31,7 @@ function index(req, res) {
   .then(flights => {
     res.render("flights/index", {
       flights: flights,
-      title: "All Flights"
+      title: "All Flights",
     })
   })
   .catch(err => {
