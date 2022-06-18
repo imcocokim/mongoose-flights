@@ -12,7 +12,7 @@ function create(req, res) {
 	}
   Flight.create(req.body)
   .then(flight => {
-    console.log('CREATED FLIGHT:', flight)
+    console.log('**** CREATED FLIGHT:', flight)
     res.redirect(`/flights/new`)
   })
   .catch(err => {

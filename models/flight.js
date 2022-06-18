@@ -21,7 +21,7 @@ const flightSchema = new Schema ({
   departs: {
     type: Date,
     default: function () {
-      return new Date().toISOString()
+      return new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString()
   }
   }
 })
@@ -31,3 +31,6 @@ const Flight = mongoose.model("Flight", flightSchema)
 export {
   Flight
 }
+
+// Had to console.log to see what date looked like to create the correct default. RIGHT NOW was: new Date().toISOString()
+// Had to figure out how to add another year to the date. After lots of research https://stackoverflow.com/questions/8609261/how-to-determine-one-year-from-now-in-javascript which I got new Date(new Date().setFullYear(new Date().getFullYear() + 1)) and then just added .toISOString
