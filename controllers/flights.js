@@ -1,8 +1,13 @@
 import { Flight } from '../models/flight.js'
 
 function newFlight(req, res) {
+  // const newFlight = new Flight()
+  // const dt = newFlight.departs
+  // const departsDate = dt.toISOString().slice(0, 16)
+  // res.render('flights/new', {departsDate})
   res.render('flights/new', {
-    title: 'Add Flight'
+    title: 'Add Flight',
+
   })
 }
 
