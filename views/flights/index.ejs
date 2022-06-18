@@ -23,7 +23,7 @@
               <button type="submit">X</button>
             </form>
           </td>
-          <td><%= flight.airline %></td>
+          <td><a href="/flights/<%= flight._id %>"><%= flight.airline %></a></td>
           <td><%= flight.airport %></td>
           <td><%= flight.flightNo %></td>
           <td><%= flight.departs %></td>
