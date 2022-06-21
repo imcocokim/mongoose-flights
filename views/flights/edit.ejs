@@ -5,12 +5,14 @@
   method="POST" autocomplete="off">
   <label for="airline-select">Airline:</label>
     <select name="airline" id="airline-select">
+      <option value="<%= flight.airline %>"><%= flight.airline %></option>
       <option value="American">American</option>
       <option value="Southwest">Southwest</option>
       <option value="United">United</option>
     </select>
     <label for="airport-select">Airport:</label>
     <select name="airport" id="airport-select">
+      <option value="<%= flight.aiport %>"><%= flight.airport %></option>
       <option value="AUS">AUS</option>
       <option value="DFW">DFW</option>
       <option value="DEN" selected>DEN</option>
@@ -18,9 +20,9 @@
       <option value="SAN">SAN</option>
     </select>
     <label for="flightNo-input">Flight Number:</label>
-    <input type="number" name="flightNo" id="flightNo-input" placeholder="between 10 - 9999">
+    <input type="number" name="flightNo" id="flightNo-input" value="<%= flight.flightNo %>">
     <label for="departs-input">Departs:</label>
-    <input type="datetime-local" name="departs" id="departs-input">
+    <input type="datetime-local" name="departs" id="departs-input" value="<%= flight.departs.toISOString().slice(0, 16) %>">
     <button type="submit">Update Flight</button>
 </form>
 <a href="/flights/<%= flight._id %>">Cancel</a>
