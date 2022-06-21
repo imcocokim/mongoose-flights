@@ -9,11 +9,16 @@
         <th>Airport</th>
         <th>Flight #</th>
         <th>Departures</th>
+        <th>Remove Flight</th>
       </tr>
     </thead>
     <tbody>
       <% flights.forEach(flight =>{ %>
         <tr class="<%- flight.color %> ">
+          <td><a href="/flights/<%= flight._id %>"><%= flight.airline %></a></td>
+          <td><%= flight.airport %></td>
+          <td><%= flight.flightNo %></td>
+          <td><%= flight.departs %></td>
           <td>
             <form
             action="/flights/<%= flight._id %>?_method=DELETE" 
@@ -23,10 +28,6 @@
               <button type="submit">X</button>
             </form>
           </td>
-          <td><a href="/flights/<%= flight._id %>"><%= flight.airline %></a></td>
-          <td><%= flight.airport %></td>
-          <td><%= flight.flightNo %></td>
-          <td><%= flight.departs %></td>
         </tr>
       <% }) %> 
     </tbody>
