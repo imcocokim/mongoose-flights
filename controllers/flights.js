@@ -1,8 +1,8 @@
 import { Flight } from '../models/flight.js'
 
 function newFlight(req, res) {
-  const newPlane = new Flight()
-  const dt = newPlane.departs
+  const newFlight = new Flight()
+  const dt = newFlight.departs
   const departsDate = dt.toISOString().slice(0, 16)
   res.render('flights/new', {
     title: 'Add Flight',
@@ -29,6 +29,11 @@ function create(req, res) {
 function index(req, res) {
   Flight.find({})
   .then(flights => {
+    // if the date has passed, flight color to red
+    flights.forEach(flight => {
+      if (flight.departs < new Date())
+        flight.color = 'red'
+    })
     res.render("flights/index", {
       flights: flights,
       title: "All Flights",

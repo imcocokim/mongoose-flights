@@ -13,7 +13,7 @@
     </thead>
     <tbody>
       <% flights.forEach(flight =>{ %>
-        <tr>
+        <tr class="<%- flight.color %> ">
           <td>
             <form
             action="/flights/<%= flight._id %>?_method=DELETE" 
