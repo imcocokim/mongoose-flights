@@ -27,11 +27,11 @@ function create(req, res) {
 }
 
 function index(req, res) {
-  Flight.find({})
+  Flight.find({}).sort({departs: 1}) 
   .then(flights => {
     // if the date has passed, flight color to red
     flights.forEach(flight => {
-      if (flight.departs < new Date())
+      if (flight.departs < new Date()) 
         flight.color = 'red'
     })
     res.render("flights/index", {
@@ -39,6 +39,7 @@ function index(req, res) {
       title: "All Flights",
     })
   })
+
   .catch(err => {
     console.log(err)
     res.redirect('/flights')
@@ -108,4 +109,6 @@ export {
   update
 }
 
-// line 4-6 date of where the server is 
+// line 4-6 date of where the server is and not the user.
+
+// .sort() was a bit harder to find the correct syntax since I was just looking in javascript. searched "dates mongoDB sort by date" which led to the link that helped us (Emily and I) https://www.educba.com/mongodb-sort-by-date/?source=leftnav
