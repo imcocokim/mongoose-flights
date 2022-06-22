@@ -22,7 +22,7 @@ function create(req, res) {
   })
   .catch(err => {
     console.log(err)
-    res.redirect('/flights')
+    res.redirect('/')
   })
 }
 
@@ -42,7 +42,7 @@ function index(req, res) {
 
   .catch(err => {
     console.log(err)
-    res.redirect('/flights')
+    res.redirect('/')
   })
 }
 
@@ -53,7 +53,7 @@ function deleteFlight(req, res) {
   })
   .catch(err => {
     console.log(err)
-    res.redirect('/flights')
+    res.redirect('/')
   })
 }
 
@@ -67,7 +67,7 @@ function show(req, res) {
   })
   .catch(err => {
     console.log(err)
-    res.redirect('/flights')
+    res.redirect('/')
   })
 }
 
@@ -81,7 +81,7 @@ function edit(req, res) {
   })
   .catch(err => {
     console.log(err)
-    res.redirect('/flights')
+    res.redirect('/')
   })
 }
 
@@ -95,7 +95,39 @@ function update(req, res) {
   })
   .catch(err => {
     console.log(err)
-    res.redirect('/flights')
+    res.redirect('/')
+  })
+}
+
+function createTicket(req, res) {
+  Flight.findById(req.params.id)
+  .then(flight => {
+    flight.tickets.push(req.body)
+    flight.save()
+    .then(() => {
+      res.redirect(`/flights/${flight._id}`)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/')
+  })
+
+}
+
+function deleteTicket(req, res) {
+  Flight.findById(req.params.id)
+  .then(flight => {
+    console.log("*****", req.params.ticketId , "******")
+    flight.tickets.remove({_id: req.params.ticketId})
+    flight.save()
+    .then(() =>{
+      res.redirect(`/flights/${flight._id}`)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/')
   })
 }
 
@@ -106,7 +138,9 @@ export {
   deleteFlight as delete,
   show,
   edit,
-  update
+  update,
+  createTicket,
+  deleteTicket
 }
 
 // line 4-6 date of where the server is and not the user.

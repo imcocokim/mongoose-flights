@@ -1,6 +1,6 @@
 <%- include('../partials/html-head') %>
 <%- include('../partials/nav') %> 
-
+<main>
 <a href="/flights/<%= flight._id%>/edit">Edit</a>
 <h2>Flight #<%= flight._id %></h2>
 <h3><%= flight.airline%> </h3>
@@ -8,5 +8,46 @@
 <h3><%= flight.flightNo %></h3>
 <h3><%= flight.departs %></h3>
 <a href="/flights">Go Back</a>
+<h2>Tickets</h2>
+<form 
+  id="add-ticket-form"
+  action="/flights/<%= flight._id %>/tickets"
+  method="POST"
+  >
+  <label for="seat-input">Seat:</label>
+  <input name="seat" id="seat-input" required pattern="[A-F][1-9]\d?" placeholder="A1 - F99">
+  <label for="price-input">Price: $</label>
+  <input type="number" name="price" id="price-input" placeholder="0">
+  <button type="submit">Add Ticket</button>
+</form>
+<% if (flight.tickets.length) {%>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Seat</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% flight.tickets.forEach(ticket =>{ %>
+        <tr>
+          <td><%= ticket.createdAt.toLocaleDateString() %></td>
+          <td><%= ticket.seat %></td>
+          <td>$<%= ticket.price %></td>
+          <td>
+            <form action="/flights/<%= flight._id %>/tickets/<%= ticket._id %>?_method=DELETE" method="POST">
+            <button>X</button>
+          </form>
+          </td>
+        </tr>
+
+      <% }) %> 
+    </tbody>
+  </table>
+<% } else {%> 
+  <h3>No Tickets Yet</h3>
+<% } %> 
+</main>
 
 <%- include('../partials/footer') %> 
