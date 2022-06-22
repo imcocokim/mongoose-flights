@@ -17,7 +17,6 @@ function create(req, res) {
 	}
   Flight.create(req.body)
   .then(flight => {
-    console.log('**** CREATED FLIGHT:', flight)
     res.redirect(`/flights`)
   })
   .catch(err => {
@@ -29,7 +28,6 @@ function create(req, res) {
 function index(req, res) {
   Flight.find({}).sort({departs: 1}) 
   .then(flights => {
-    // if the date has passed, flight color to red
     flights.forEach(flight => {
       if (flight.departs < new Date()) 
         flight.color = 'red'
@@ -118,7 +116,6 @@ function createTicket(req, res) {
 function deleteTicket(req, res) {
   Flight.findById(req.params.id)
   .then(flight => {
-    console.log("*****", req.params.ticketId , "******")
     flight.tickets.remove({_id: req.params.ticketId})
     flight.save()
     .then(() =>{
@@ -146,3 +143,5 @@ export {
 // line 4-6 date of where the server is and not the user.
 
 // .sort() was a bit harder to find the correct syntax since I was just looking in javascript. searched "dates mongoDB sort by date" which led to the link that helped us (Emily and I) https://www.educba.com/mongodb-sort-by-date/?source=leftnav
+
+// finding childId (ticketId) was frustrating then found this link https://stackoverflow.com/questions/53699000/mongoose-find-child-by-id
