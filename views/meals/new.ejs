@@ -1,0 +1,21 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %> 
+<main>
+  <h1><%= title %> </h1>
+  <p>Please check if the meal is not already in the dropdown.
+    <select>
+      <% meals.forEach(meal => { %>
+        <option><%= meal.name %> </option>
+      <% }) %> 
+    </select>
+  </p>
+  <form id="add-meal-form" action="/meals" method="POST">
+    <label for="name-input">Name:</label>
+    <input type="text" name="name" id="name-input">
+    <button type="submit">Add Meal</button>
+  </form>
+
+</main>
+
+
+<%- include('../partials/footer') %> 
