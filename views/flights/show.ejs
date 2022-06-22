@@ -1,7 +1,7 @@
 <%- include('../partials/html-head') %>
 <%- include('../partials/nav') %> 
 <main>
-<a href="/flights/<%= flight._id%>/edit">Edit</a>
+<a href="/flights/<%= flight._id%>/edit"><button type="submit">Edit</button></a>
 <h2>Flight #<%= flight._id %></h2>
 <h3><%= flight.airline%> </h3>
 <h3><%= flight.airport %></h3>
