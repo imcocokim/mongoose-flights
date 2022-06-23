@@ -1,9 +1,10 @@
 <%- include('../partials/html-head') %>
+<link rel="stylesheet" href="/stylesheets/meals/new.css" />
 <%- include('../partials/nav') %> 
 <main>
   <h1><%= title %> </h1>
   <p>Please check if the meal is not already in the dropdown.
-    <select>
+    <select id="meal-dropdown">
       <% meals.forEach(meal => { %>
         <option><%= meal.name %> </option>
       <% }) %> 

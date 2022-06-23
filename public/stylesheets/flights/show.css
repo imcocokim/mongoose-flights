@@ -27,28 +27,18 @@ form * {
   border-radius: 5px;
 }
 
-section {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-gap: 16px;
-}
-
-section div:nth-child(even) {
-  font-weight: bold;
-}
-
-#add-review-form {
+#add-meal-to-meals {
   display: grid;
   grid-template-columns: auto auto;
   grid-gap: 16px;
   margin-bottom: 20px;
 }
 
-#add-review-form > textarea {
+#add-meal-to-meals> textarea {
   width: 250px;
 }
 
-#add-review-form > button {
+#add-meal-to-meals > button {
   font-size: 16px;
   width: 160px;
   grid-column: 2 / 3;

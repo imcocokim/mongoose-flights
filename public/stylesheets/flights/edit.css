@@ -1,8 +1,14 @@
+body {
+  min-height: 50vh;  
+}
+
 form {
+  margin-top: 5vh;
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: repeat(2, minmax(auto, 352px));
+  grid-template-columns: auto auto;
   font-size: 20px;
+  
 }
 
 form * {
@@ -16,4 +22,15 @@ form > button {
   width: 160px;
   margin-left: auto;
   font-size: 22px;
+}
+
+#cancel {
+  margin-top: 10px;
+  width: 160px;
+  height: 40px;
+  position: center;
+  font-size: 22px;
+  color: red;
+  float: right;
+
 }
