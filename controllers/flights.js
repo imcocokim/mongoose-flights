@@ -135,7 +135,7 @@ function deleteTicket(req, res) {
   })
 }
 
-function addToMeals(req, res) {
+function addToMeal(req, res) {
   Flight.findById(req.params.id)
   .then(flight => {
     flight.meals.push(req.body.mealId)
@@ -158,7 +158,7 @@ export {
   update,
   createTicket,
   deleteTicket,
-  addToMeals
+  addToMeal
 }
 
 // line 4-6 date of where the server is and not the user.

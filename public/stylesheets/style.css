@@ -1,12 +1,68 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url('../assets/bg.jpg');
+  background-size: cover;
+  margin: 0;
+  color: white;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 50px 1fr;
+  grid-template-areas:
+    "nav"
+    "main";
+  font-size: 18px;
+}
+
+body > main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+body > main h1:first-child {
+  margin-bottom: 50px;
 }
 
 a {
-  color: #00B7FF;
+  color: bisque;
+}
+
+body > nav {
+  grid-area: nav;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px 0 30px;
+}
+
+nav > i {
+  width: 34px;
+  object-fit: contain;
+  margin-right: auto;
+}
+
+nav > a {
+  margin: 20px;
+  text-decoration: none;
+  padding: 20px;
+  border-radius: 5px;
+  color: black;
+}
+
+nav > a:visited {
+  color: lightgray;
+}
+
+nav > a:hover {
+  color: black;
+  background-color: lightgray;
 }
 
 .red {
   color: red;
 }
+
