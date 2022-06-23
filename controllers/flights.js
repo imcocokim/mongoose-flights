@@ -1,4 +1,6 @@
+import methodOverride from 'method-override'
 import { Flight } from '../models/flight.js'
+import { Meal } from '../models/meal.js'
 
 function newFlight(req, res) {
   const newFlight = new Flight()
@@ -17,7 +19,7 @@ function create(req, res) {
 	}
   Flight.create(req.body)
   .then(flight => {
-    res.redirect(`/flights`)
+    res.redirect(`/flights/${flight._id}`)
   })
   .catch(err => {
     console.log(err)
@@ -57,10 +59,15 @@ function deleteFlight(req, res) {
 
 function show(req, res) {
   Flight.findById(req.params.id)
+  .populate('meals')
   .then(flight => {
-    res.render("flights/show", {
-      flight: flight,
-      title: "Flight Detail"
+    Meal.find({_id: {$nin: flight.meals}})
+    .then(meals => {
+      res.render("flights/show", {
+        flight: flight,
+        title: "Flight Detail",
+        meals
+      })
     })
   })
   .catch(err => {
@@ -128,6 +135,19 @@ function deleteTicket(req, res) {
   })
 }
 
+function addToMeals(req, res) {
+  Flight.findById(req.params.id)
+  .then(flight => {
+    flight.meals.push(req.body.performerId)
+    flight.save()
+    .then(() => {
+      res.redirect(`/flights/${flight._id}`)
+
+    })
+  })
+
+}
+
 export {
   newFlight as new,
   create,
@@ -137,7 +157,8 @@ export {
   edit,
   update,
   createTicket,
-  deleteTicket
+  deleteTicket,
+  addToMeals
 }
 
 // line 4-6 date of where the server is and not the user.

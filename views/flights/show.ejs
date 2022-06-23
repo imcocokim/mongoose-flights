@@ -1,6 +1,8 @@
 <%- include('../partials/html-head') %>
 <%- include('../partials/nav') %> 
 <main>
+  <h1><%= title %> </h1>
+  <section>
 <a href="/flights/<%= flight._id%>/edit"><button type="submit">Edit</button></a>
 <h2>Flight #<%= flight._id %></h2>
 <h3><%= flight.airline%> </h3>
@@ -48,6 +50,25 @@
 <% } else {%> 
   <h3>No Tickets Yet</h3>
 <% } %> 
+<h2>Current Meals:</h2>
+<ul>
+  <% flight.meals.forEach(flightMeal => { %>
+    <li><%= flightMeal.name %> </li>
+
+  <% }) %> 
+</ul>
+</section>
+<div><h2>Add a Meal:</h2>
+<form id="add-meal-to-meals" action="/flights/<%= flight._id/meals %>" method="POST">
+  <select name="mealID" id>
+    <% meals.forEach(meal =>{%>
+      <option value="<%= meal._id %>"><%= meal.name %> </option>
+
+    <%}) %>
+  </select>
+  <button type="submit">Add Meal</button>
+</form>
+</div>
 </main>
 
 <%- include('../partials/footer') %> 
